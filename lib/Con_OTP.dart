@@ -39,7 +39,7 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingSeconds > 0) {
         setState(() {
           _remainingSeconds--;
@@ -55,9 +55,9 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 14, 48, 126),
+        backgroundColor: const Color.fromARGB(255, 14, 48, 126),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
@@ -66,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
             ); // Navigate back to the previous screen
           },
         ),
-        title: Text('ການຢືນຢັນ OTP'),
+        title: const Text('ການຢືນຢັນ OTP'),
         centerTitle: true,
       ),
       body: Padding(
@@ -74,18 +74,18 @@ class _OtpScreenState extends State<OtpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Spacer(),
+            const Spacer(),
             Image.network(
               "https://pbs.twimg.com/profile_images/1301199561713541120/7dPeX1gK_400x400.png",
               height: 50,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'ກະລຸນາໃສ່ລະຫັດ 4 ໂຕເລກ',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(4, (index) {
@@ -103,12 +103,12 @@ class _OtpScreenState extends State<OtpScreen> {
                     decoration: InputDecoration(
                       counterText: '', // Hide the character counter
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                             color: Color.fromARGB(255, 54, 127, 244)),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
+                        borderSide: const BorderSide(color: Colors.green),
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -116,21 +116,21 @@ class _OtpScreenState extends State<OtpScreen> {
                 );
               }),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'ສົ່ງອີກ ($_remainingSeconds) ວິນາທີ',
-              style: TextStyle(color: Colors.red, fontSize: 18),
+              style: const TextStyle(color: Colors.red, fontSize: 18),
             ),
             TextButton(
               onPressed: () {
                 // Add your resend OTP logic here
               },
-              child: Text(
+              child: const Text(
                 'ບໍ່ໄດ້ຮັບລະຫັດບໍ?',
                 style: TextStyle(color: Colors.green),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -145,9 +145,9 @@ class _OtpScreenState extends State<OtpScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
-                child: Text(
+                child: const Text(
                   'ຢືນຢັນ',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
