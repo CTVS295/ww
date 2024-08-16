@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/OTP.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -47,7 +48,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
+        fontSize: 16.0,
       );
       return;
     }
@@ -61,7 +62,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.black,
       textColor: Colors.white,
-      fontSize: 16.0
+      fontSize: 16.0,
+    );
+
+    // Navigate to OTP screen after sending OTP
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Otp(), // Ensure this screen is implemented.
+      ),
     );
   }
 
@@ -73,7 +82,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
+        fontSize: 16.0,
       );
       return;
     }
@@ -87,7 +96,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.black,
       textColor: Colors.white,
-      fontSize: 16.0
+      fontSize: 16.0,
     );
   }
 
@@ -99,7 +108,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
+        fontSize: 16.0,
       );
       return;
     }
@@ -111,7 +120,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         gravity: ToastGravity.BOTTOM,
         backgroundColor: Colors.red,
         textColor: Colors.white,
-        fontSize: 16.0
+        fontSize: 16.0,
       );
       return;
     }
@@ -123,7 +132,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
       gravity: ToastGravity.BOTTOM,
       backgroundColor: Colors.green,
       textColor: Colors.white,
-      fontSize: 16.0
+      fontSize: 16.0,
     );
 
     // Optionally increment attempt count after a successful registration.
@@ -174,7 +183,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: CircleAvatar(
                 radius: 50,
                 backgroundImage: _profileImage,
-                child: _profileImage == const AssetImage('assets/default_profile.png')
+                child: _profileImage ==
+                        const AssetImage('assets/default_profile.png')
                     ? Icon(Icons.camera_alt, size: 50, color: Colors.grey[800])
                     : null,
               ),
@@ -243,13 +253,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ],
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                if (!_isOtpSent) {
-                  _sendOtp();
-                } else {
-                  _register();
-                }
-              },
+              onPressed: _isOtpSent ? _register : _sendOtp,
               child: Text(_isOtpSent ? 'Register' : 'Send OTP'),
             ),
           ],
@@ -258,4 +262,3 @@ class _RegistrationPageState extends State<RegistrationPage> {
     );
   }
 }
-
