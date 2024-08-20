@@ -18,6 +18,7 @@ dependencies:
   shared_preferences: ^2.1.0 # Use the latest version compatible with your Flutter version
   fluttertoast: ^8.2.5
   cupertino_icons: ^1.0.2
+  carousel_slider: ^4.0.0
   local_auth: ^2.1.0  # Use the latest version available
 
 dev_dependencies:

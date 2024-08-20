@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/OTP.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/login_page.dart';
 
 void main() {
@@ -139,12 +140,12 @@ class _OtpScreenState extends State<OtpScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPage(),
+                      builder: (context) =>MyHomePage(),
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Color.fromARGB(255, 57, 145, 221),
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: const Text(

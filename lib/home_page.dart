@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/login_page.dart';
+import 'login_page.dart';
 import 'profile_page.dart';
 import 'phone_payment_page.dart';
 import 'internet_payment_page.dart';
@@ -31,6 +31,18 @@ class MyHomePage extends StatelessWidget {
             );
           },
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              // Handle the notification icon press
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotificationPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
