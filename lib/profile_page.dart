@@ -75,11 +75,38 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("ຢືນຢັນການອອກຈາກລະບົບ"),
+          content: Text(" ເຈົ້າແນ່ໃຈຫລືບໍ່ທີຈະອອກຈາກລະບົບ?"),
+          actions: [
+            TextButton(
+              child: Text("ຍົກເລີກ"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("ອອກຈາກລະບົບ"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _logout(); // Call the logout method
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile Page'),
+        title: const Text('ໂປຮໄຟລ'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -98,7 +125,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           IconButton(
             icon: const Icon(Icons.logout),
-            onPressed: _logout,
+            onPressed: () => _showLogoutConfirmationDialog(context),
             tooltip: 'Logout',
           ),
         ],

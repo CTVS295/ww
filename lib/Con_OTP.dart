@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/OTP.dart';
 import 'package:flutter_application_1/home_page.dart';
-import 'package:flutter_application_1/login_page.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -56,18 +55,24 @@ class _OtpScreenState extends State<OtpScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 14, 48, 126),
+        backgroundColor: Colors.blue,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => OtpPage()),
-              // กำหนดฟังก์ชันเมื่อกดปุ่มย้อนกลับ
-            ); // Navigate back to the previous screen
+            );
           },
         ),
-        title: const Text('ການຢືນຢັນ OTP'),
+        title: const Text(
+          'ການຢືນຢັນ OTP',
+          style: TextStyle(
+            fontSize: 28,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -77,7 +82,7 @@ class _OtpScreenState extends State<OtpScreen> {
           children: [
             const Spacer(),
             Image.network(
-              "https://pbs.twimg.com/profile_images/1301199561713541120/7dPeX1gK_400x400.png",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsqPu0o000EtLnvJPKZcTtfgubxj2WeoL_A&s",
               height: 50,
             ),
             const SizedBox(height: 20),
@@ -98,14 +103,12 @@ class _OtpScreenState extends State<OtpScreen> {
                     textAlign: TextAlign.center,
                     maxLength: 1,
                     inputFormatters: [
-                      FilteringTextInputFormatter
-                          .digitsOnly, // Allow only digits
+                      FilteringTextInputFormatter.digitsOnly,
                     ],
                     decoration: InputDecoration(
-                      counterText: '', // Hide the character counter
+                      counterText: '',
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromARGB(255, 54, 127, 244)),
+                        borderSide: const BorderSide(color: Colors.blue),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -136,16 +139,16 @@ class _OtpScreenState extends State<OtpScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigate to LoginPage
+                  // Navigate to HomePage
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>MyHomePage(),
+                      builder: (context) => MyHomePage(),
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 57, 145, 221),
+                  backgroundColor: Colors.blue,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: const Text(

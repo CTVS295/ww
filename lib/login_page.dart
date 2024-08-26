@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/OTP.dart';
 import 'home_page.dart';
 import 'registration_page.dart';
-import 'ad_page.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider
 
 class LoginPage extends StatefulWidget {
@@ -55,9 +55,9 @@ class _LoginPageState extends State<LoginPage> {
                 viewportFraction: 0.6,
               ),
               items: [
-                'https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvam9iNjgwLTE2Ni1wLWwxZGJ1cTN2LnBuZw.png//via.placeholder.com/600x400',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBza0YK08bPltAil5GFmBuQnJ8Lk3oNFFt3SBc3ufaooVgCaEC9M4fSTauWViXZN3Xb7E&usqp=CAU//via.placeholder.com/600x400',
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9fm-RaMlaFUrRbkXDpAZUH21pOBR_EWHp1w&s//via.placeholder.com/600x400',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsqPu0o000EtLnvJPKZcTtfgubxj2WeoL_A&s//via.placeholder.com/600x400',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsqPu0o000EtLnvJPKZcTtfgubxj2WeoL_A&s//via.placeholder.com/600x400',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsqPu0o000EtLnvJPKZcTtfgubxj2WeoL_A&s//via.placeholder.com/600x400',
               ].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
@@ -164,12 +164,17 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 20),
                         TextButton(
                           onPressed: () {
-                            // Handle "Forgot Password?" action here
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OtpPage()),
+                            );  // Handle "Forgot Password?" action here
                           },
                           child: const Text(
                             'Forgot Password?',
                             style: TextStyle(color: Colors.blue),
                           ),
+
                         ),
                         TextButton(
                           onPressed: () {
@@ -203,4 +208,36 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+Widget _buildGridItem(IconData icon, String label, BuildContext context, Widget page) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => page),
+      );
+    },
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.blueAccent, width: 2),
+            borderRadius: BorderRadius.circular(8), // Optional: To make the corners rounded
+          ),
+          padding: const EdgeInsets.all(8),
+          child: Icon(icon, size: 40, color: Colors.blueAccent),
+        ),
+        const SizedBox(height: 10),
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 16, // Increased font size
+            fontWeight: FontWeight.bold, // Optional: To make the font bold
+          ),
+        ),
+      ],
+    ),
+  );
 }

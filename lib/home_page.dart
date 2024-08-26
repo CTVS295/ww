@@ -16,30 +16,75 @@ import 'show_basic_page.dart';
 import 'more_info_page.dart';
 
 class MyHomePage extends StatelessWidget {
+  static const List<IconData> _icons = [
+    Icons.phone, Icons.wifi, Icons.phone, Icons.electrical_services,
+    Icons.water, Icons.notifications, Icons.qr_code, Icons.qr_code_2,
+    Icons.settings, Icons.app_registration, Icons.store, Icons.help,
+    Icons.info,
+  ];
+
+  static const List<String> _labels = [
+    'Phone payment', 'Internet payment', 'PSTN payment', 'Electricity',
+    'Water supply', 'Notification', 'My QR code', 'QR pay',
+    'Setting', 'Register agent', 'Register merchant', 'Show basic',
+    'More info',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ETL Digital FinTech'),
-        leading: IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-              (Route<dynamic> route) => false,
-            );
-          },
+        title: const Text(
+          'ETL Digital FinTech',
+          style: TextStyle(
+            fontSize: 28,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+         backgroundColor: Colors.blue,
+        centerTitle: true,
         actions: [
+          Stack(
+            children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.notifications),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
+                },
+              ),
+              Positioned(
+                right: 5,
+                top: 6,
+                child: Container(
+                  padding: const EdgeInsets.all(2),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  constraints: const BoxConstraints(
+                    minWidth: 16,
+                    minHeight: 16,
+                  ),
+                  child: const Text(
+                    '0', // Replace '0' with the actual notification count
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.logout),
             onPressed: () {
-              // Handle the notification icon press
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NotificationPage()),
-              );
+              _showLogoutConfirmationDialog(context);
             },
           ),
         ],
@@ -48,7 +93,7 @@ class MyHomePage extends StatelessWidget {
         children: [
           ListTile(
             leading: const Icon(Icons.person, size: 40, color: Colors.blueAccent),
-            title: const Text('Profile Page'),
+            title: const Text('ຮູບໂປໄຟລ'),
             onTap: () {
               Navigator.push(
                 context,
@@ -65,22 +110,10 @@ class MyHomePage extends StatelessWidget {
                 mainAxisSpacing: 10,
               ),
               padding: const EdgeInsets.all(10),
-              itemCount: 13,
+              itemCount: _icons.length,
               itemBuilder: (context, index) {
-                final items = [
-                  Icons.phone, Icons.wifi, Icons.phone, Icons.electrical_services,
-                  Icons.water, Icons.notifications, Icons.qr_code, Icons.qr_code_2,
-                  Icons.settings, Icons.app_registration, Icons.store, Icons.help,
-                  Icons.info,
-                ];
-                final labels = [
-                  'Phone payment', 'Internet payment', 'PSTN payment', 'Electricity',
-                  'Water supply', 'Notification', 'My QR code', 'QR pay',
-                  'Setting', 'Register agent', 'Register merchant', 'Show basic',
-                  'More info',
-                ];
-
-                return _buildGridItem(items[index], labels[index], context, _getPage(index));
+                return _buildGridItem(
+                    _icons[index], _labels[index], context, _getPage(index));
               },
             ),
           ),
@@ -100,7 +133,14 @@ class MyHomePage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, size: 40, color: Colors.blueAccent),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.blueAccent, width: 2),
+              borderRadius: BorderRadius.circular(8), // Optional: To make the corners rounded
+            ),
+            padding: const EdgeInsets.all(8),
+            child: Icon(icon, size: 40, color: Colors.blueAccent),
+          ),
           const SizedBox(height: 10),
           Text(
             label,
@@ -129,5 +169,36 @@ class MyHomePage extends StatelessWidget {
       case 12: return MoreInfoPage();
       default: return MoreInfoPage();
     }
+  }
+
+  void _showLogoutConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("ຢືນຢັນການອອກຈາກລະບົບ"),
+          content: const Text("ເຈົ້າແນ່ໃຈ ຫຼື ບໍ່ທີຈະອອກຈາກລະບົບ?"),
+          actions: [
+            TextButton(
+              child: const Text("ຍົກເລີກ"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text("ອອກຈາກລະບົບ"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

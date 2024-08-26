@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Con_OTP.dart';
+import 'login_page.dart';
+import 'Con_OTP.dart';
 
 void main() {
   runApp(Otp());
@@ -28,38 +29,56 @@ class _OtpPageState extends State<OtpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 14, 48, 126),
+        title: const Text(
+          'OTP',
+          style: TextStyle(
+            fontSize: 28,
+           color: Colors.black, // Corrected color property
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.blue,
         elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Image.network(
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjJ_m8HT6Nzvvcc2rKb6w-sPnWY4biyACdgg&s', // Replace with your logo URL
+              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwsqPu0o000EtLnvJPKZcTtfgubxj2WeoL_A&s', // Replace with your logo URL
               height: 100,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'ETL',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _phoneController,
               keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
-                labelText: 'ເບີໂທລະສັບລວມຂັ້ນ',
+              decoration: const InputDecoration(
+                labelText: 'ເບີໂທລະສັບຂອງທ່ານ',
                 prefixIcon: Icon(Icons.phone),
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Checkbox(
@@ -78,13 +97,12 @@ class _OtpPageState extends State<OtpPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
-                backgroundColor:
-                    Color.fromARGB(255, 14, 48, 126), // สีของข้อความ
-                minimumSize: Size(double.infinity, 50), // ปุ่มเต็มความกว้าง
+                backgroundColor: Colors.blue,
+                minimumSize: const Size(double.infinity, 50),
               ),
               onPressed: _agreeToTerms
                   ? () {
@@ -96,8 +114,8 @@ class _OtpPageState extends State<OtpPage> {
                         ),
                       );
                     }
-                  : null, // เปิดใช้งานเมื่อ Checkbox ถูกติ๊ก
-              child: Text('ສົ່ງລະຫັດ OTP'),
+                  : null,
+              child: const Text('ສົ່ງລະຫັດ OTP'),
             ),
           ],
         ),

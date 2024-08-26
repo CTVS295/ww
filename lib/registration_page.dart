@@ -69,7 +69,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => Otp(), // Ensure this screen is implemented.
+        builder: (context) => OtpPage(), // Ensure this screen is implemented.
       ),
     );
   }
@@ -232,24 +232,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
             ),
             const SizedBox(height: 20),
             if (_isOtpSent && !_isOtpVerified) ...[
-              TextField(
-                decoration: const InputDecoration(
-                  labelText: 'Enter OTP',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                controller: _otpController,
-                keyboardType: TextInputType.number,
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(6),
-                ],
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: _verifyOtp,
-                child: const Text('Verify OTP'),
-              ),
+           
+           
             ],
             const SizedBox(height: 20),
             ElevatedButton(

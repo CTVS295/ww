@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Boot/etlservies"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../test"
+		}
+	],
+	"settings": {}
+}
